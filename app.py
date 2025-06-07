@@ -87,8 +87,8 @@ with st.sidebar:
     model_choice = st.selectbox(
         "Chọn Model:",
         [
-            "gemini-2.0-flash",
-            "gemma-3-27b-it"
+            "gemma-3-27b-it",
+            "gemini-2.0-flash"
         ],
         help="Chọn model AI bạn muốn sử dụng"
     )
@@ -227,18 +227,18 @@ else:
                         <div class="chat-message user-message">
                             <strong>👤 Bạn:</strong><br>
                             <div style="white-space: pre-wrap;">{message["content"].replace('<', '&lt;').replace('>', '&gt;')}</div>
-                            <div class="timestamp">{message["timestamp"]}</div>
                         </div>
                         """, unsafe_allow_html=True)
+                        st.caption(f"⏰ {message['timestamp']}")
                     else:
                         model_name = message.get("model", "AI")
                         st.markdown(f"""
                         <div class="chat-message assistant-message">
                             <strong>🤖 {model_name}:</strong><br>
                             <div style="white-space: pre-wrap;">{message["content"].replace('<', '&lt;').replace('>', '&gt;')}</div>
-                            <div class="timestamp">{message["timestamp"]}</div>
                         </div>
                         """, unsafe_allow_html=True)
+                        st.caption(f"⏰ {message['timestamp']}")
             
             # Input cho tin nhắn mới
             st.markdown("---")
