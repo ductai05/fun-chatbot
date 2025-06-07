@@ -1,6 +1,6 @@
 # Fun Chatbot
 
-This is a chatbot built with Python and the Gradio library.
+This is a chatbot built with Python and Streamlit library.
 
 ## Introduction
 
@@ -9,7 +9,7 @@ Fun Chatbot is a simple chatbot that can answer questions and perform some basic
 ## Features
 
 *   Answers questions on a variety of topics.
-*   Easy-to-use web interface built with Gradio.
+*   Easy-to-use web interface built with Streamlit.
 
 ## Installation
 
@@ -22,15 +22,15 @@ Fun Chatbot is a simple chatbot that can answer questions and perform some basic
     ```bash
     pip install -r requirements.txt
     ```
-
-3.  **Run the application:**
+    If you are using NixOS:
     ```bash
-    python app.py
+    nix-shell
     ```
 
-## Usage
-
-Open your browser and go to `http://127.0.0.1:7860` to start chatting with the chatbot.
+4.  **Run the application:**
+    ```bash
+    streamlit run app.py
+    ```
 
 ## Contributing
 
