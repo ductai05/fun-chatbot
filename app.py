@@ -50,13 +50,6 @@ def main():
     load_dotenv()
     # Lấy API key từ biến môi trường
     api_key = os.getenv("GOOGLE_API_KEY")
-    
-    # Cấu hình API key cho mô hình của Google
-    if api_key:
-        GoogleGenerativeAI.configure(api_key=api_key)
-    else:
-        st.error("Chưa tìm thấy GOOGLE_API_KEY. Vui lòng tạo file .env và thêm key vào.")
-        return
 
     # --- GIAO DIỆN STREAMLIT ---
     st.set_page_config(page_title="Hỏi đáp tài liệu của bạn", page_icon=":books:")
@@ -110,8 +103,20 @@ def main():
                 # Tìm kiếm các chunk liên quan trong vector store
                 docs = st.session_state.vectorstore.similarity_search(user_question)
                 
+                # Lấy API key từ biến môi trường
+                api_key = os.getenv("GOOGLE_API_KEY")
+
+                # Kiểm tra lại xem có key không
+                if not api_key:
+                    st.error("Vui lòng cung cấp GOOGLE_API_KEY trong Streamlit secrets.")
+                    st.stop() # Dừng thực thi nếu không có key
+
                 # Tạo chuỗi hỏi đáp (QA chain)
-                llm = GoogleGenerativeAI(model="models/gemini-pro", temperature=0.3)
+                llm = GoogleGenerativeAI(
+                    model="models/gemini-pro",
+                    google_api_key=api_key, # <--- THÊM DÒNG NÀY
+                    temperature=0.3
+                )
                 chain = load_qa_chain(llm, chain_type="stuff")
                 
                 # Chạy chain để có câu trả lời
