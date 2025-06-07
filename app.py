@@ -226,7 +226,7 @@ else:
                         st.markdown(f"""
                         <div class="chat-message user-message">
                             <strong>👤 Bạn:</strong><br>
-                            <div style="white-space: pre-wrap;">{message["content"].replace('<', '&lt;').replace('>', '&gt;')}</div>
+                            {message["content"]}
                         </div>
                         """, unsafe_allow_html=True)
                         st.caption(f"⏰ {message['timestamp']}")
@@ -235,7 +235,7 @@ else:
                         st.markdown(f"""
                         <div class="chat-message assistant-message">
                             <strong>🤖 {model_name}:</strong><br>
-                            <div style="white-space: pre-wrap;">{message["content"].replace('<', '&lt;').replace('>', '&gt;')}</div>
+                            <div style="white-space: pre-wrap;">{message["content"]}</div>
                         </div>
                         """, unsafe_allow_html=True)
                         st.caption(f"⏰ {message['timestamp']}")
