@@ -235,10 +235,11 @@ else:
                         st.markdown(f"""
                         <div class="chat-message assistant-message">
                             <strong>🤖 {model_name}:</strong><br>
-                            <div style="white-space: pre-wrap;">{message["content"]}</div>
+                            <div style="white-space: pre-wrap; line-height: 1.2; margin: 0.5rem 0;">{message["content"].replace('<', '&lt;').replace('>', '&gt;')}</div>
                         </div>
                         """, unsafe_allow_html=True)
                         st.caption(f"⏰ {message['timestamp']}")
+                        print(message["content"])
             
             # Input cho tin nhắn mới
             st.markdown("---")
